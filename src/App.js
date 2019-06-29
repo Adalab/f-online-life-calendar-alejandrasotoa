@@ -21,6 +21,20 @@ const App = () => {
     }));
   };
 
+  // useEffect (() => {
+  //   const getLocal = JSON.parse (localStorage.getItem ('mood'));
+  //   if (state.savedMood.length > 0) {
+  //     localStorage.setItem ('mood', JSON.stringify (state.savedMood));
+  //   } else if (state.savedMood.length === 0 && getLocal !== null) {
+  //     setState ({
+  //       moodSaved: [...getLocal],
+  //       date: '',
+  //       mood: '',
+  //       message: '',
+  //     });
+  //   }
+  // });
+
   const handleSave = () => {
     setState (prevState => ({
       savedMood: [
@@ -43,7 +57,7 @@ const App = () => {
         <Route
           exact
           path="/"
-          render={() => <Calendar moodSaved={state.moodSaved} />}
+          render={() => <Calendar savedMood={state.savedMood} />}
         />
         <Route
           path="/edit"

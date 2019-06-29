@@ -24,7 +24,7 @@ const Form = props => {
             <input
               type="radio"
               name="mood"
-              value="happy"
+              value=":)"
               className="form__radio happy__input"
               onChange={handleChange}
             />
@@ -34,7 +34,7 @@ const Form = props => {
             <input
               type="radio"
               name="mood"
-              value="sad"
+              value=":("
               className="form__radio sad__input"
               onChange={handleChange}
             />
@@ -48,7 +48,7 @@ const Form = props => {
             type="text"
             name="message"
             className="form__input"
-            placeholder="¿Why it whas a good day?"
+            placeholder="Why it whas a good day?"
             onChange={handleChange}
           />
 

@@ -20,3 +20,32 @@
     text-decoration: none;
     width: 100%;
 }
+
+.calendar__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mood__face {
+    height: 80px;
+    width: 80px;   
+    border-radius: 100%;
+    font-size: 40px;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.happy__face {
+    background-color: yellow;
+    color:black;
+}
+
+.sad__face {
+    color: white;
+    background-color: rgb(236, 32, 32);
+}
