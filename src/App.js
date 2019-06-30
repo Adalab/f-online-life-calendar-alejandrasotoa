@@ -25,7 +25,6 @@ const App = () => {
 
   useEffect (() => {
     const localMood = getLocalStorage ();
-    console.log (localMood);
     if (localMood !== undefined) {
       setState (prevState => ({
         ...prevState,
