@@ -8,7 +8,7 @@ const App = () => {
   const [state, setState] = useState ({
     savedMood: [],
     date: '',
-    mood: '',
+    mood: ':)',
     message: '',
   });
 
@@ -21,19 +21,27 @@ const App = () => {
     }));
   };
 
-  // useEffect (() => {
-  //   const getLocal = JSON.parse (localStorage.getItem ('mood'));
-  //   if (state.savedMood.length > 0) {
-  //     localStorage.setItem ('mood', JSON.stringify (state.savedMood));
-  //   } else if (state.savedMood.length === 0 && getLocal !== null) {
-  //     setState ({
-  //       moodSaved: [...getLocal],
-  //       date: '',
-  //       mood: '',
-  //       message: '',
-  //     });
-  //   }
-  // });
+  const getLocalStorage = () => JSON.parse (localStorage.getItem ('mood'));
+
+  useEffect (() => {
+    const localMood = getLocalStorage ();
+    console.log (localMood);
+    if (localMood !== undefined) {
+      setState (prevState => ({
+        ...prevState,
+        savedMood: localMood,
+      }));
+    }
+  }, []);
+
+  useEffect (
+    () => {
+      if (state.savedMood.length > 0) {
+        localStorage.setItem ('mood', JSON.stringify (state.savedMood));
+      }
+    },
+    [state.savedMood]
+  );
 
   const handleSave = () => {
     setState (prevState => ({
@@ -46,7 +54,7 @@ const App = () => {
         },
       ],
       date: '',
-      mood: '',
+      mood: ':)',
       message: '',
     }));
   };
@@ -62,7 +70,7 @@ const App = () => {
         <Route
           path="/edit"
           render={() => (
-            <Form handleChange={handleChange} handleSave={handleSave} />
+            <Form handleChange={handleChange} handleSave={handleSave} mood={state.mood} />
           )}
         />
       </Switch>

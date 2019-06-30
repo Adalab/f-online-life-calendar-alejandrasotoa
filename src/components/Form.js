@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import './Form.css';
 
 const Form = props => {
-  const {handleChange, handleSave} = props;
+  const {handleChange, handleSave, mood} = props;
   return (
     <React.Fragment>
       <small className="form__container--title">Edit</small>
@@ -27,7 +27,8 @@ const Form = props => {
               value=":)"
               className="form__radio happy__input"
               onChange={handleChange}
-            />
+              checked={mood === ':)' ? true : false}
+              />
             {':)'}
           </label>
           <label className="form__label" htmlFor="mood">
@@ -37,25 +38,35 @@ const Form = props => {
               value=":("
               className="form__radio sad__input"
               onChange={handleChange}
+              checked={mood === ':(' ? true : false}
             />
             {':('}
           </label>
         </div>
-        <div className="form__container--message">
-          <h2 className="form__title">Message</h2>
-          <label className="form__label" htmlFor="text">Message</label>
-          <input
-            type="text"
-            name="message"
-            className="form__input"
-            placeholder="Why it whas a good day?"
-            onChange={handleChange}
-          />
-
-        </div>
+        {mood === ':)'
+          ? <div className="form__container--message">
+              <h2 className="form__title">Message</h2>
+              <label className="form__label" htmlFor="text">Message</label>
+              <input
+                type="text"
+                name="message"
+                className="form__input"
+                placeholder="Why it whas a good day?"
+                onChange={handleChange}
+              />
+            </div>
+          : ''}
         <div className="form__container--button">
-          <Link to="/" className="form__button form__save--button" onClick={handleSave}>Save</Link>
-          <button className="form__button form__cancel--button">Cancel</button>
+          <Link
+            to="/"
+            className="form__button form__save--button"
+            onClick={handleSave}
+          >
+            Save
+          </Link>
+          <Link to="/" className="form__button form__cancel--button">
+            Cancel
+          </Link>
         </div>
       </div>
     </React.Fragment>
