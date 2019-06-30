@@ -6,14 +6,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60px;
+    height: 30px;
     border: none;
-    background-color: green;
+    background-color: purple;
     font-family: 'Raleway', sans-serif;
     color: white;
     font-weight: 800;
     cursor: pointer;
-    font-size: 60px;
+    font-size: 40px;
     padding: 0;
     margin: 0;
     border-radius: 5px;
@@ -29,10 +29,10 @@
 }
 
 .mood__face {
-    height: 80px;
-    width: 80px;   
+    height: 50px;
+    width: 50px;   
     border-radius: 100%;
-    font-size: 40px;
+    font-size: 20px;
     font-weight: 800;
     display: flex;
     justify-content: center;
@@ -42,11 +42,16 @@
 }
 
 .happy__face {
-    background-color: yellow;
+    background-color: #fc0;
     color:black;
 }
 
 .sad__face {
     color: white;
     background-color: rgb(236, 32, 32);
+}
+
+.calendar__no-faces {
+    text-align: center;
+    font-size: 18px;
 }

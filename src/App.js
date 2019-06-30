@@ -35,7 +35,7 @@ const App = () => {
 
   useEffect (
     () => {
-      if (state.savedMood.length > 0) {
+      if (state.savedMood !== null) {
         localStorage.setItem ('mood', JSON.stringify (state.savedMood));
       }
     },
