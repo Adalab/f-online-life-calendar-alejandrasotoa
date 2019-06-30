@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect (() => {
     const localMood = getLocalStorage ();
-    if (localMood !== undefined) {
+    if (localMood !== null) {
       setState (prevState => ({
         ...prevState,
         savedMood: localMood,
@@ -55,7 +55,6 @@ const App = () => {
 
   const getLocalStorage = () => JSON.parse (localStorage.getItem ('mood'));
 
-
   const handleSave = () => {
     if (!repeated) {
       setState (prevState => ({
@@ -81,7 +80,7 @@ const App = () => {
       mood: ':)',
       message: '',
     }));
-    setRepeated(false);
+    setRepeated (false);
   };
 
   return (
