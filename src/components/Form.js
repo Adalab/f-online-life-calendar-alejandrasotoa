@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import './Form.css';
 
 const Form = props => {
-  const {handleChange, handleSave, handleCancel, mood} = props;
+  const {handleChange, handleSave, handleCancel, mood, repeated} = props;
   return (
     <React.Fragment>
       <small className="form__container--title">Edit</small>
@@ -18,6 +18,11 @@ const Form = props => {
             onChange={handleChange}
           />
         </div>
+        {repeated
+          ? <p className="error__message">
+              You already set this date. Please try with another!
+            </p>
+          : ''}
         <div className="form__container--mood">
           <h2 className="form__title">Mood</h2>
           <label className="form__label" htmlFor="mood">
@@ -58,9 +63,9 @@ const Form = props => {
           : ''}
         <div className="form__container--button">
           <Link
+            className={`form__button form__save--button ${repeated ? 'disabled__button' : ''}`}
+            onClick={repeated ? e => e.preventDefault (e) : handleSave}
             to="/"
-            className="form__button form__save--button"
-            onClick={handleSave}
           >
             Save
           </Link>

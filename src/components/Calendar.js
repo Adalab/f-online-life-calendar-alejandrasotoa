@@ -4,7 +4,7 @@ import './Calendar.css';
 
 const Calendar = props => {
   let moodList;
-  if (props.savedMood.length > 0) {
+  if (props.savedMood.length > 0 || props.savedMood !== null) {
     moodList = props.savedMood
       .sort ((a, b) => {
         return new Date (a.dateSaved) - new Date (b.dateSaved);
@@ -25,20 +25,19 @@ const Calendar = props => {
         );
       });
   }
-
   return (
     <React.Fragment>
       <small className="form__container--title">Calendar</small>
       <div className="section__container">
         <div className="calendar__button--container">
-          <Link className="calendar__button" to="/edit">+</Link>
+          <Link className="calendar__button" to="/edit" disabled>+</Link>
         </div>
         <div className="calendar__list--container">
-          {moodList
+          {moodList.length > 0
             ? <ul className="calendar__list">
                 {moodList}
               </ul>
-            : <p className="calendar__no-faces">Add a mood to start :)!</p>}
+            : <p className="calendar__no-faces">{`Add a mood to start :)!`}</p>}
         </div>
       </div>
     </React.Fragment>

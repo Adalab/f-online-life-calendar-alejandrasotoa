@@ -11,17 +11,7 @@ const App = () => {
     mood: ':)',
     message: '',
   });
-
-  const handleChange = event => {
-    const key = event.currentTarget.name;
-    const value = event.currentTarget.value;
-    setState (prevState => ({
-      ...prevState,
-      [key]: value,
-    }));
-  };
-
-  const getLocalStorage = () => JSON.parse (localStorage.getItem ('mood'));
+  const [repeated, setRepeated] = useState (false);
 
   useEffect (() => {
     const localMood = getLocalStorage ();
@@ -42,20 +32,46 @@ const App = () => {
     [state.savedMood]
   );
 
-  const handleSave = () => {
+  const checkRepeat = valueDate => {
+    const isRepeated = state.savedMood.findIndex (
+      item => item.dateSaved === valueDate
+    );
+    if (isRepeated !== -1) {
+      setRepeated (true);
+    } else {
+      setRepeated (false);
+    }
+  };
+
+  const handleChange = event => {
+    const key = event.currentTarget.name;
+    const value = event.currentTarget.value;
+    checkRepeat (value);
     setState (prevState => ({
-      savedMood: [
-        ...prevState.savedMood,
-        {
-          dateSaved: prevState.date,
-          moodSaved: prevState.mood,
-          messageSaved: prevState.message,
-        },
-      ],
-      date: '',
-      mood: ':)',
-      message: '',
+      ...prevState,
+      [key]: value,
     }));
+  };
+
+  const getLocalStorage = () => JSON.parse (localStorage.getItem ('mood'));
+
+
+  const handleSave = () => {
+    if (!repeated) {
+      setState (prevState => ({
+        savedMood: [
+          ...prevState.savedMood,
+          {
+            dateSaved: prevState.date,
+            moodSaved: prevState.mood,
+            messageSaved: prevState.message,
+          },
+        ],
+        date: '',
+        mood: ':)',
+        message: '',
+      }));
+    }
   };
 
   const handleCancel = () => {
@@ -65,6 +81,7 @@ const App = () => {
       mood: ':)',
       message: '',
     }));
+    setRepeated(false);
   };
 
   return (
@@ -83,6 +100,7 @@ const App = () => {
               handleSave={handleSave}
               handleCancel={handleCancel}
               mood={state.mood}
+              repeated={repeated}
             />
           )}
         />
