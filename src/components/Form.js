@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import './Form.css';
 
 const Form = props => {
-  const {handleChange, handleSave, mood} = props;
+  const {handleChange, handleSave, handleCancel, mood} = props;
   return (
     <React.Fragment>
       <small className="form__container--title">Edit</small>
@@ -28,7 +28,7 @@ const Form = props => {
               className="form__radio happy__input"
               onChange={handleChange}
               checked={mood === ':)' ? true : false}
-              />
+            />
             {':)'}
           </label>
           <label className="form__label" htmlFor="mood">
@@ -64,7 +64,11 @@ const Form = props => {
           >
             Save
           </Link>
-          <Link to="/" className="form__button form__cancel--button">
+          <Link
+            to="/"
+            className="form__button form__cancel--button"
+            onClick={handleCancel}
+          >
             Cancel
           </Link>
         </div>

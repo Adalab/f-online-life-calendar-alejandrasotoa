@@ -58,6 +58,15 @@ const App = () => {
     }));
   };
 
+  const handleCancel = () => {
+    setState (prevState => ({
+      ...prevState,
+      date: '',
+      mood: ':)',
+      message: '',
+    }));
+  };
+
   return (
     <div className="App">
       <Switch>
@@ -69,7 +78,12 @@ const App = () => {
         <Route
           path="/edit"
           render={() => (
-            <Form handleChange={handleChange} handleSave={handleSave} mood={state.mood} />
+            <Form
+              handleChange={handleChange}
+              handleSave={handleSave}
+              handleCancel={handleCancel}
+              mood={state.mood}
+            />
           )}
         />
       </Switch>
