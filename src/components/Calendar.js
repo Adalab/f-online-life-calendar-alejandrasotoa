@@ -1,10 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Calendar.css';
 
 const Calendar = props => {
   let moodList;
-  if ( props.savedMood.length > 0) {
+  const {savedMood} = props;
+  if (savedMood.length > 0) {
     moodList = props.savedMood
       .sort ((a, b) => {
         return new Date (a.dateSaved) - new Date (b.dateSaved);
@@ -33,7 +35,7 @@ const Calendar = props => {
           <Link className="calendar__button" to="/edit">+</Link>
         </div>
         <div className="calendar__list--container">
-          {moodList 
+          {moodList
             ? <ul className="calendar__list">
                 {moodList}
               </ul>
@@ -42,6 +44,10 @@ const Calendar = props => {
       </div>
     </React.Fragment>
   );
+};
+
+Calendar.propTypes = {
+  savedMood: PropTypes.array.isRequired,
 };
 
 export default Calendar;

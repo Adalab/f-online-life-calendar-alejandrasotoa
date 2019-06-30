@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Form.css';
 
 const Form = props => {
@@ -80,6 +81,14 @@ const Form = props => {
       </div>
     </React.Fragment>
   );
+};
+
+Form.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSave: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired,
+  mood: PropTypes.string.isRequired,
+  repeated: PropTypes.bool.isRequired 
 };
 
 export default Form;
